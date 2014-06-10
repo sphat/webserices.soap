@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+  <handler-chain>
+    <handler>
+      <handler-name>sw.wine.handlers.LogHandler</handler-name>
+      <handler-class>sw.wine.handlers.LogHandler</handler-class>
+    </handler>
+    <handler>
+      <handler-name>sw.wine.handlers.ClientHandler</handler-name>
+      <handler-class>sw.wine.handlers.ClientHandler</handler-class>
+    </handler>    
+  </handler-chain>
+</handler-chains>

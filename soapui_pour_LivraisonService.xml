@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Service_Livraison_Par_CXF_AT_WebService" resourceRoot="" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LivraisonServiceSoapBinding" type="wsdl" bindingName="{http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/}LivraisonServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/sereivuth/Desktop/SW/SW_TP3_MonRepot/p1211510-tp3sw/services/src/main/resources/wsdl/livraisonsGenerateParCXF.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/sereivuth/Desktop/SW/SW_TP3_MonRepot/p1211510-tp3sw/services/src/main/resources/wsdl/livraisonsGenerateParCXF.wsdl"><con:part><con:url>file:/home/sereivuth/Desktop/SW/SW_TP3_MonRepot/p1211510-tp3sw/services/src/main/resources/wsdl/livraisonsGenerateParCXF.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LivraisonService" targetNamespace="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="commande" type="tns:commande"/>
+      <xs:element name="commandeResponse" type="tns:commandeResponse"/>
+      <xs:element name="confirmation" type="tns:confirmation"/>
+      <xs:element name="confirmationResponse" type="tns:confirmationResponse"/>
+      <xs:element name="infos" type="tns:commandeInfos"/>
+      <xs:element name="livraisonEffectuee" type="tns:livraisonEffectuee"/>
+      <xs:element name="livraisonEffectueeResponse" type="tns:livraisonEffectueeResponse"/>
+      <xs:element name="vin" type="tns:article"/>
+      <xs:complexType name="commande">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:vin"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="article">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="reference" type="xs:string"/>
+          <xs:element name="quantite" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="commandeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:commandeInfos"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="commandeInfos">
+        <xs:sequence>
+          <xs:element name="prix" type="xs:double"/>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="livraisonEffectuee">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="confirmation" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="livraisonEffectueeResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="confirmation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="confirmation" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="confirmationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NonDisponibleException" type="tns:NonDisponibleException"/>
+      <xs:complexType name="NonDisponibleException">
+        <xs:sequence>
+          <xs:element name="referenceVin" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CommandeInconnueException" type="tns:CommandeInconnueException"/>
+      <xs:complexType name="CommandeInconnueException">
+        <xs:sequence>
+          <xs:element name="commandeId" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="livraisonEffectuee">
+    <wsdl:part element="tns:livraisonEffectuee" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commande">
+    <wsdl:part element="tns:commande" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="confirmation">
+    <wsdl:part element="tns:confirmation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandeInconnueException">
+    <wsdl:part element="tns:CommandeInconnueException" name="CommandeInconnueException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commandeResponse">
+    <wsdl:part element="tns:commandeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="livraisonEffectueeResponse">
+    <wsdl:part element="tns:livraisonEffectueeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NonDisponibleException">
+    <wsdl:part element="tns:NonDisponibleException" name="NonDisponibleException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="confirmationResponse">
+    <wsdl:part element="tns:confirmationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceNameLivraisonItf">
+    <wsdl:operation name="commande">
+      <wsdl:input message="tns:commande" name="commande"></wsdl:input>
+      <wsdl:output message="tns:commandeResponse" name="commandeResponse"></wsdl:output>
+      <wsdl:fault message="tns:NonDisponibleException" name="NonDisponibleException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="livraisonEffectuee">
+      <wsdl:input message="tns:livraisonEffectuee" name="livraisonEffectuee"></wsdl:input>
+      <wsdl:output message="tns:livraisonEffectueeResponse" name="livraisonEffectueeResponse"></wsdl:output>
+      <wsdl:fault message="tns:CommandeInconnueException" name="CommandeInconnueException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="confirmation">
+      <wsdl:input message="tns:confirmation" name="confirmation"></wsdl:input>
+      <wsdl:output message="tns:confirmationResponse" name="confirmationResponse"></wsdl:output>
+      <wsdl:fault message="tns:NonDisponibleException" name="NonDisponibleException"></wsdl:fault>
+      <wsdl:fault message="tns:CommandeInconnueException" name="CommandeInconnueException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LivraisonServiceSoapBinding" type="tns:ServiceNameLivraisonItf">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="commande">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="commande">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="commandeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NonDisponibleException">
+        <soap:fault name="NonDisponibleException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="livraisonEffectuee">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="livraisonEffectuee">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="livraisonEffectueeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CommandeInconnueException">
+        <soap:fault name="CommandeInconnueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="confirmation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="confirmation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="confirmationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="NonDisponibleException">
+        <soap:fault name="NonDisponibleException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CommandeInconnueException">
+        <soap:fault name="CommandeInconnueException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LivraisonService">
+    <wsdl:port binding="tns:LivraisonServiceSoapBinding" name="NewPort">
+      <soap:address location="http://localhost:9080/services/WineServices"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:9080/services/WineServices</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="commande" bindingOperationName="commande" type="Request-Response" outputName="commandeResponse" inputName="commande" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="commande"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/services/WineServices</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:liv="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+   <soapenv:Header>
+      <cli:client xmlns:cli="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+         <client-id>18</client-id>
+         <nom>toto</nom>
+         <compte>12563</compte>
+      </cli:client>
+   </soapenv:Header>
+   <soapenv:Body>
+      <liv:commande>
+         <!--Zero or more repetitions:-->
+         <vin>
+            <!--Optional:-->
+            <reference>001</reference>
+            <quantite>1</quantite>
+         </vin>                   
+      </liv:commande>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/ServiceNameLivraisonItf/commande"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="confirmation" bindingOperationName="confirmation" type="Request-Response" outputName="confirmationResponse" inputName="confirmation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="confirmation"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/services/WineServices</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:liv="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+   <soapenv:Header>
+      <cli:client xmlns:cli="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+         <client-id>18</client-id>
+         <nom>toto</nom>
+         <compte>12563</compte>
+      </cli:client>
+   </soapenv:Header>
+   <soapenv:Body>
+      <liv:confirmation>
+         <!--Optional:-->
+         <confirmation>CMD-56</confirmation>
+      </liv:confirmation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/ServiceNameLivraisonItf/confirmation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="livraisonEffectuee" bindingOperationName="livraisonEffectuee" type="Request-Response" outputName="livraisonEffectueeResponse" inputName="livraisonEffectuee" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="livraisonEffectuee"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9080/services/WineServices</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:liv="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+   <soapenv:Header>
+      <cli:client xmlns:cli="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/">
+         <client-id>18</client-id>
+         <nom>toto</nom>
+         <compte>12563</compte>
+      </cli:client>
+   </soapenv:Header>
+   <soapenv:Body>
+      <liv:livraisonEffectuee>
+         <!--Optional:-->
+         <confirmation>CMD-56</confirmation>
+      </liv:livraisonEffectuee>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.univ-lyon1.fr/M2TI/TIW5/wine/service/livraisons/ServiceNameLivraisonItf/livraisonEffectuee"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
